@@ -2,6 +2,9 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { EditPlanDialog } from "@/components/global/EditPlanDialog";
+import { RemovePlanDialog } from "@/components/global/RemovePlanDialog";
 
 export default function Home() {
   return (
@@ -59,31 +62,44 @@ export default function Home() {
         <div className="border-t border-gray-200 dark:border-gray-800" />
         <div className="space-y-4">
           <div className="grid items-center grid-cols-2">
-            <div className="space-y-1">
+            <Link href="/details/000" className="space-y-1">
               <h3 className="text-lg font-bold">Paris</h3>
               <p className="text-sm text-gray-500 dark:text-gray-400">
                 June 1, 2023 - June 15, 2023
               </p>
-            </div>
+            </Link>
             <div className="flex items-center justify-end space-x-2">
-              <Button size="sm">Edit</Button>
-              <Button size="sm" variant="outline">
-                Delete
-              </Button>
+              <EditPlanDialog
+                openButtonComponent={<Button size="sm">Edit</Button>}
+              />
+              <RemovePlanDialog
+                openButtonComponent={
+                  <Button size="sm" variant="destructive">
+                    Delete
+                  </Button>
+                }
+              />
             </div>
           </div>
+
           <div className="grid items-center grid-cols-2">
-            <div className="space-y-1">
+            <Link href="/details/001" className="space-y-1">
               <h3 className="text-lg font-bold">Maldives</h3>
               <p className="text-sm text-gray-500 dark:text-gray-400">
                 August 10, 2023 - August 20, 2023
               </p>
-            </div>
+            </Link>
             <div className="flex items-center justify-end space-x-2">
-              <Button size="sm">Edit</Button>
-              <Button size="sm" variant="outline">
-                Delete
-              </Button>
+              <EditPlanDialog
+                openButtonComponent={<Button size="sm">Edit</Button>}
+              />
+              <RemovePlanDialog
+                openButtonComponent={
+                  <Button size="sm" variant="destructive">
+                    Delete
+                  </Button>
+                }
+              />
             </div>
           </div>
         </div>
