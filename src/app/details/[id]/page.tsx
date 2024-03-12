@@ -17,18 +17,22 @@ export default function Details() {
       <CardContent className="flex flex-col space-y-4">
         <div className="grid gap-3">
           <div className="space-y-1">
-            <p className="text-sm leading-none text-gray-500">Description</p>
+            <p className="leading-none text-gray-600 font-semibold">
+              Description
+            </p>
             <p className="text-sm leading-none">
               We&apos;re going to have a great time building sandcastles and
               playing beach volleyball.
             </p>
           </div>
-          <div>
-            <p className="text-sm leading-none text-gray-500">Start Date</p>
+          <div className="space-y-1">
+            <p className="leading-none text-gray-600 font-semibold">
+              Start Date
+            </p>
             <p className="text-sm leading-none">2023-06-01</p>
           </div>
-          <div>
-            <p className="text-sm leading-none text-gray-500">End Date</p>
+          <div className="space-y-1">
+            <p className="leading-none text-gray-600 font-semibold">End Date</p>
             <p className="text-sm leading-none">2023-06-07</p>
           </div>
         </div>
