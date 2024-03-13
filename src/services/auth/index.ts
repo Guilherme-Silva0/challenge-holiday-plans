@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import EmailProvider from "next-auth/providers/nodemailer";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import { prismaClient } from "@/services/database";
+import prisma from "@/services/database";
 
 export const {
   handlers: { GET, POST },
@@ -14,7 +14,7 @@ export const {
     verifyRequest: "/auth",
     newUser: "/",
   },
-  adapter: PrismaAdapter(prismaClient),
+  adapter: PrismaAdapter(prisma),
   providers: [
     EmailProvider({
       id: "sendgrid",
