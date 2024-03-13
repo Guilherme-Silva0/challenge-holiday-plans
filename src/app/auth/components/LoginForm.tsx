@@ -1,5 +1,7 @@
 "use client";
 
+import { set, z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -13,13 +15,32 @@ import {
 import { useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
 import { useToast } from "@/components/ui/use-toast";
+import clsx from "clsx";
+import { useState } from "react";
+import { Loader } from "@/components/global/Loader";
+
+const loginFormSchema = z.object({
+  email: z
+    .string()
+    .min(1, { message: "Email is required" })
+    .email({ message: "Must be a valid email" }),
+});
 
 export function LoginForm() {
-  const form = useForm();
+  const [isLoading, setIsLoading] = useState(false);
+
   const { toast } = useToast();
 
-  const handlesubmit = form.handleSubmit(async (data) => {
-    console.log(data.email);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(loginFormSchema),
+  });
+
+  const handleFormSubmit = handleSubmit(async (data) => {
+    setIsLoading(true);
     try {
       await signIn("sendgrid", { email: data.email, redirect: false });
       toast({
@@ -33,10 +54,11 @@ export function LoginForm() {
         description: "There was an error sending your magic link",
       });
     }
+    setIsLoading(false);
   });
 
   return (
-    <form onSubmit={handlesubmit}>
+    <form onSubmit={handleFormSubmit}>
       <Card className="mx-auto max-w-sm">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-bold">
@@ -53,12 +75,24 @@ export function LoginForm() {
               <Input
                 id="email"
                 placeholder="m@example.com"
-                required
                 type="email"
-                {...form.register("email")}
+                disabled={isLoading}
+                className={clsx(errors.email && "border-destructive")}
+                {...register("email")}
               />
+              {errors.email?.message && (
+                <p className="text-destructive text-sm">
+                  {errors.email?.message as string}
+                </p>
+              )}
             </div>
-            <Button className="w-full">Send Magic Link</Button>
+            <Button disabled={isLoading} className="w-full">
+              {isLoading ? (
+                <Loader size="small" color="white" />
+              ) : (
+                "Send Magic Link"
+              )}
+            </Button>
           </div>
         </CardContent>
       </Card>{" "}
