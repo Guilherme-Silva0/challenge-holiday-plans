@@ -4,6 +4,8 @@ import { getAllPlansByUserId } from "./services/getAllPlansByUserId";
 import { createPlan } from "./services/CreatePlan";
 import { DtoCreatePlan } from "./Dtos/DtoCreatePlan";
 import { formPlanSchema } from "@/lib/formPlanSchema";
+import { getPlanById } from "./services/getPlanById";
+import { deletePlanById } from "./services/deletePlanById";
 
 export const GET = auth(async (req) => {
   const user = req.auth?.user;
@@ -62,4 +64,24 @@ export const POST = auth(async (req) => {
       { status: 500 },
     );
   }
+});
+
+export const DELETE = auth(async (req) => {
+  const user = req.auth?.user;
+
+  if (!user?.id) {
+    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+  }
+
+  const id = req.nextUrl.searchParams.get("id");
+
+  const plan = await getPlanById(id);
+
+  if (!plan) {
+    return NextResponse.json({ message: "Plan not found" }, { status: 404 });
+  }
+
+  const deleted = await deletePlanById(plan.id);
+
+  return NextResponse.json({ ...deleted }, { status: 200 });
 });
