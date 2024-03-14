@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { MountainIcon } from "@/app/(landingPage)/components/MountainIcon";
 import { auth } from "@/services/auth";
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { UserAvatar } from "./UserAvatar";
 
 export async function Header() {
