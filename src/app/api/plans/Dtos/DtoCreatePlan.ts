@@ -8,14 +8,14 @@ export class DtoCreatePlan {
   constructor(
     title: string,
     description: string,
-    startDate: Date,
-    endDate: Date,
+    startDate: string,
+    endDate: string,
     userId: string,
   ) {
     this.title = title;
     this.description = description;
-    this.startDate = startDate;
-    this.endDate = endDate;
+    this.startDate = new Date(startDate);
+    this.endDate = new Date(endDate);
     this.userId = userId;
   }
 }
