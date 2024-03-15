@@ -1,3 +1,5 @@
+import { SVGProps } from "react";
+
 export function MountainIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
