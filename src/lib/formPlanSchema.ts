@@ -30,3 +30,5 @@ export const formPlanSchema = z
     },
     { path: ["endDate"], message: "End date must be after start date" },
   );
+
+export type TypeFormPlan = z.infer<typeof formPlanSchema>;
