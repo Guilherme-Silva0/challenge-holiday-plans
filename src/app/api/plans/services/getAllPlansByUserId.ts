@@ -7,6 +7,9 @@ export async function getAllPlansByUserId(userId: string) {
         id: userId,
       },
     },
+    orderBy: {
+      startDate: "asc"
+    },
     include: {
       user: true,
     },
