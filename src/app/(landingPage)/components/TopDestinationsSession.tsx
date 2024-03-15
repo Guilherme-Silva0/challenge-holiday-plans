@@ -21,7 +21,7 @@ export function TopDestinationsSession() {
                 alt="Santorini, Greece"
                 className="object-cover object-center w-full h-full"
                 height="230"
-                src="/ima-ges/santorini.jpg"
+                src="/images/santorini.jpg"
                 width="350"
               />
             </div>
@@ -50,7 +50,7 @@ export function TopDestinationsSession() {
                 alt="New York City, USA"
                 className="object-cover object-center w-full h-full"
                 height="230"
-                src="/ima-ges/newyork.jpg"
+                src="/images/newyork.jpg"
                 width="350"
               />
             </div>
@@ -79,7 +79,7 @@ export function TopDestinationsSession() {
                 alt="Tokyo, Japan"
                 className="object-cover object-center w-full h-full"
                 height="230"
-                src="/ima-ges/tokyo.jpg"
+                src="/images/tokyo.jpg"
                 width="350"
               />
             </div>
