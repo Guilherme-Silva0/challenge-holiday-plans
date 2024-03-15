@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { MountainIcon } from "@/app/(landingPage)/components/MountainIcon";
+import { MountainIcon } from "@/components/global/MountainIcon";
 import { auth } from "@/services/auth";
-import { UserAvatar } from "./UserAvatar";
+import { UserAvatar } from "@/components/global/UserAvatar";
 
 export async function Header() {
   const session = await auth();
